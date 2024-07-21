@@ -1,0 +1,6 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\chupi\OneDrive\Рабочий стол\АК\lab1\MyLab1\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(237,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\chupi\OneDrive\Рабочий стол\АК\lab1\MyLab1\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(221,16): warning C4101: status: неиспользованная локальная переменная
+C:\Users\chupi\OneDrive\Рабочий стол\АК\lab1\MyLab1\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(225,9): warning C4101: testSize: неиспользованная локальная переменная
+C:\Users\chupi\OneDrive\Рабочий стол\АК\lab1\MyLab1\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(224,17): warning C4101: size: неиспользованная локальная переменная
+  ConsoleApplication1.vcxproj -> C:\Users\chupi\OneDrive\Рабочий стол\АК\lab1\MyLab1\ConsoleApplication1\Debug\ConsoleApplication1.exe

@@ -1,0 +1,10 @@
+﻿lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Send в функции main.
+lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Recv в функции main.
+lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Barrier в функции main.
+lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Comm_size в функции main.
+lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Comm_rank в функции main.
+lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Wtime в функции main.
+lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Init в функции main.
+lab1.obj : error LNK2019: ссылка на неразрешенный внешний символ MPI_Finalize в функции main.
+C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x86\msmpi.lib : warning LNK4272: тип компьютера библиотеки "x86" конфликтует с типом целевого компьютера "x64"
+C:\Users\chupi\OneDrive\Рабочий стол\АК\lab1\lab1\x64\Debug\lab1.exe : fatal error LNK1120: неразрешенных внешних элементов: 8
