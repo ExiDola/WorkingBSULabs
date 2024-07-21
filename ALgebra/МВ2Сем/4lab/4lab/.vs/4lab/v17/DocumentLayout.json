@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ExiDola\\Desktop\\\u041C\u04122\u0421\u0435\u043C\\4lab\\4lab\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E5AEA009-AA43-4299-887F-3C01CC9B6150}|4lab\\4lab.vcxproj|C:\\Users\\ExiDola\\Desktop\\\u041C\u04122\u0421\u0435\u043C\\4lab\\4lab\\4lab\\4lab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E5AEA009-AA43-4299-887F-3C01CC9B6150}|4lab\\4lab.vcxproj|solutionrelative:4lab\\4lab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "4lab.cpp",
+              "DocumentMoniker": "C:\\Users\\ExiDola\\Desktop\\\u041C\u04122\u0421\u0435\u043C\\4lab\\4lab\\4lab\\4lab.cpp",
+              "RelativeDocumentMoniker": "4lab\\4lab.cpp",
+              "ToolTip": "C:\\Users\\ExiDola\\Desktop\\\u041C\u04122\u0421\u0435\u043C\\4lab\\4lab\\4lab\\4lab.cpp",
+              "RelativeToolTip": "4lab\\4lab.cpp",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAGEAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-20T22:06:49.517Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

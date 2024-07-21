@@ -1,0 +1,11 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(12,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(29,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(42,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(59,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(104,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(128,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(139,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(150,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(160,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  ConsoleApplication1.vcxproj -> C:\Users\Пользователь\Desktop\МВ\3lab\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe

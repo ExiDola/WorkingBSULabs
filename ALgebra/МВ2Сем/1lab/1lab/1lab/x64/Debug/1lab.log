@@ -1,0 +1,3 @@
+﻿  1lab.cpp
+C:\Users\Пользователь\Desktop\МВСем2\1lab\1lab\1lab\1lab.cpp(99,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  1lab.vcxproj -> C:\Users\Пользователь\Desktop\МВСем2\1lab\1lab\x64\Debug\1lab.exe

@@ -1,0 +1,3 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\ExiDola\Desktop\МВ2Сем\2lab\2lab\ConsoleApplication1\ConsoleApplication1.cpp(15,8): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  ConsoleApplication1.vcxproj -> C:\Users\ExiDola\Desktop\МВ2Сем\2lab\2lab\x64\Debug\ConsoleApplication1.exe
