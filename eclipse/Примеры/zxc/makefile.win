@@ -1,0 +1,33 @@
+# makefile lab4
+# windows version
+
+.SUFFIXES: .class .java
+
+PACK1=ClassText
+PACK2=test
+TARG=test
+JC=javac -g -encoding utf8
+JM=java -ea -jar
+JR=jar -cfe
+
+OBJ=$(PACK1)\ClassText.class \
+    $(PACK2)\test.class
+
+.java.class:
+	$(JC) $<
+
+run: build
+	$(JM) $(TARG).jar
+
+build: 	$(OBJ)
+	$(JR) $(TARG).jar $(PACK2).$(TARG) $(OBJ)
+
+clean:
+	for %%f in ($(OBJ)) do del %%f
+	del $(TARG).jar
+
+$(PACK1)\ClassText.class: $(PACK1)\ClassText.java makefile.win
+
+$(PACK2)\test.class: $(PACK2)\test.java makefile.win
+
+# eof makefile lab4

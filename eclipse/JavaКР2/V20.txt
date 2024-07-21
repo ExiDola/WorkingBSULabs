@@ -1,0 +1,72 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
+
+class Point {
+    public int x;
+    public int y;
+
+    public Point(int xr, int yr) {
+        x = xr;
+        y = yr;
+    }
+}
+
+class LinePanel extends JPanel {
+    private static final long serialVersionUID = 1L;
+    private double k;
+    private double b;
+    private ArrayList<Point> points;
+
+    public LinePanel() {
+        setPreferredSize(new Dimension(400, 400));
+        k = 0.9;
+        b = 40;
+        points = new ArrayList<>();
+
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++) {
+            points.add(new Point(rand.nextInt(getPreferredSize().width), rand.nextInt(getPreferredSize().height)));
+        }
+    }
+
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawLine(0, (int) b, getWidth(), (int) (k * getWidth() + b));
+
+        for (Point p : points) {
+            if (p.y > k * p.x + b) {
+                g.setColor(Color.GREEN);
+            } else if (p.y < k * p.x + b) {
+                g.setColor(Color.RED);
+            } else {
+                g.setColor(Color.BLUE);
+            }
+            g.fillOval(p.x, p.y, 6, 6);
+        }
+    }
+}
+
+public class Solution extends JFrame {
+    private static final long serialVersionUID = 1L;
+
+    public Solution() {
+        setTitle("Line and Points");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        LinePanel linePanel = new LinePanel();
+        getContentPane().add(linePanel);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new Solution();
+        });
+    }
+}

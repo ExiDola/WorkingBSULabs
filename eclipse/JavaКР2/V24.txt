@@ -1,0 +1,73 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class SwingAnimation extends JPanel {
+    private boolean animationDone = false;
+    private boolean hittedEdge = false;
+    private String str;
+    private int ctr = 0;
+    private int windowWidth;
+    private int windowHeight;
+
+    public SwingAnimation(String text) {
+        str = text;
+        setPreferredSize(new Dimension(400, 200)); 
+
+        new Thread(() -> {
+            while (!animationDone) {
+                updateAnimation();
+                repaint();
+                delayAnimation();
+            }
+        }).start();
+    }
+
+    public void delayAnimation() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAnimation() {
+        if (!hittedEdge)
+            ctr++;
+        else
+            ctr--;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        windowWidth = getWidth();
+        windowHeight = getHeight();
+
+        if (ctr + g.getFontMetrics().stringWidth(str) > windowWidth) {
+            hittedEdge = !hittedEdge;
+        }
+        if (ctr == 0) {
+            hittedEdge = !hittedEdge;
+        }
+
+        if (hittedEdge) {
+            g.setColor(Color.RED);
+            g.drawString(str, ctr, windowHeight / 2);
+        } else {
+            g.setColor(Color.BLACK);
+            g.drawString(str, ctr, windowHeight / 2);
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Swing Animation");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add(new SwingAnimation("Hello, World!"));
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+}

@@ -1,0 +1,4 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\chupi\OneDrive\Рабочий стол\АиСД\BinSearch\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(8,18): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\chupi\OneDrive\Рабочий стол\АиСД\BinSearch\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(27,18): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\chupi\OneDrive\Рабочий стол\АиСД\BinSearch\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(34,13): error C2065: b: необъявленный идентификатор

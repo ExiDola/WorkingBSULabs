@@ -1,0 +1,31 @@
+# makefile z4_2
+# linux version
+
+.SUFFIXES: .class .java
+
+PACK=z4_2
+TARG=test
+JC=javac -g -encoding utf8
+JM=java -ea -jar
+JR=jar -cfe
+
+OBJ=$(PACK)/Matrix.class \
+    $(PACK)/test.class
+
+.java.class:
+	$(JC) $<
+
+run: build
+	$(JM) $(TARG).jar
+
+build: 	$(OBJ)
+	$(JR) $(TARG).jar $(PACK).test $(OBJ)
+
+clean:
+	rm $(OBJ) $(TARG).jar
+
+$(PACK)/Matrix.class: $(PACK)/Matrix.java makefile.lin
+
+$(PACK)/test.class: $(PACK)/test.java makefile.lin
+
+# eof makefile z4_2

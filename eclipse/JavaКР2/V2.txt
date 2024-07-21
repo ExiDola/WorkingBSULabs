@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Solution {
+    static ArrayList<String> wordsList = new ArrayList<String>();
+    static void processingLine(String s){
+        StringTokenizer sTokenized = new StringTokenizer(s);
+        while(sTokenized.hasMoreElements()) {
+            String w = sTokenized.nextToken();
+            if (Character.isUpperCase(w.charAt(0)))
+                wordsList.add(w);
+        }
+    }
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Inter data: ");
+        String l;
+        while(scan.hasNextLine() && !(l = scan.nextLine()).equals(""))
+            processingLine(l);
+        scan.close();
+        System.out.println("Words with 0-s upper case character: ");
+        for(String str:wordsList)
+            System.out.println(str);
+    }
+}

@@ -1,0 +1,6 @@
+Exception in thread "main" java.lang.AssertionError
+	at z4_2.Matrix.toString(Matrix.java:69)
+	at java.lang.String.valueOf(String.java:2849)
+	at java.io.PrintStream.println(PrintStream.java:821)
+	at z4_2.test.main(test.java:53)
+make: *** [run] Error 1

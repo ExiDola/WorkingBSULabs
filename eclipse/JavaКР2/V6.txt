@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Solution {
+    static ArrayList<String> stringDigitsList = new ArrayList<String>();
+    public static boolean isDigit(String s){
+        for (int i = 0; i < s.length() - 1; i++)
+            if (!Character.isDigit(s.charAt(i)))
+                return false;
+        if (!Character.isDigit(s.charAt(s.length() - 1)) && s.charAt(s.length() - 1) != 'L' &&
+        		s.charAt(s.length() - 1) != 'l' && 
+        		s.charAt(s.length() - 1) != 'F' && s.charAt(s.length() - 1) != 'f' && 
+        		s.charAt(s.length() - 1) != 'D' && s.charAt(s.length() - 1) != 'd' &&
+        		s.charAt(s.length() - 1) != 'B' && s.charAt(s.length() - 1) != 'b' && 
+        		s.charAt(s.length() - 1) != 'S' && s.charAt(s.length() - 1) != 's')
+        	return false;
+        return true;
+    }
+
+    public static void main(String[]args){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter data: ");
+        String l;
+        while(scan.hasNextLine() && !(l = scan.nextLine()).equals("")){
+            StringTokenizer st = new StringTokenizer(l);
+            while(st.hasMoreElements()){
+                String w = st.nextToken();
+                if (isDigit(w))
+                    stringDigitsList.add(w);
+            }
+        }
+        System.out.println("Digits: ");
+        for(String str:stringDigitsList)
+            System.out.println(str);
+    }
+}

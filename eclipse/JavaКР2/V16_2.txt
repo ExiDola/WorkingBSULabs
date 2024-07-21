@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class Solution {
+	static ArrayList<String> linesList = new ArrayList<String>();
+	
+    static class Word implements Comparable<Word>{
+        protected String value;
+        protected int begin, end;
+        
+        public Word(String s, int b){
+            value = s;
+            begin = b;
+            end = b + s.length() - 1;
+        }
+        
+        public static boolean isWord(String s){
+            for(int i = 0; i < s.length(); i++)
+                if(!Character.isLetter(s.charAt(i)))
+                    return false;
+            return true; 
+            }
+        
+        @Override
+        public int compareTo(Word o) {
+            return value.compareTo(o.value);
+            }
+        }
+    
+    static void processLine(String s){
+        StringBuilder sb = new StringBuilder(s);
+        ArrayList<Word> wordsBefore = new ArrayList<Word>();
+        ArrayList<Word> wordsAfter = new ArrayList<Word>();
+        StringTokenizer st = new StringTokenizer(s);
+        int position = 0;
+        while(st.hasMoreElements()){
+            String word = st.nextToken();
+            position = s.indexOf(word, position);
+            if (Word.isWord(word)) {
+                wordsAfter.add(new Word(word, position));
+                wordsBefore.add(new Word(word, position));
+                }
+        }
+        Collections.sort(wordsAfter);
+        for(int i = wordsAfter.size() - 1; i >= 0; i--)
+            sb.replace(wordsBefore.get(i).begin, wordsBefore.get(i).end + 1, wordsAfter.get(i).value);
+        linesList.add(sb.toString());
+        }
+    
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter data: ");
+        String l;
+        while(scan.hasNextLine() && !(l = scan.nextLine()).equals("")) 
+        	processLine(l);
+        System.out.println("Edited data: ");
+        for(String line:linesList)
+            System.out.println(line);
+        }
+
+}
