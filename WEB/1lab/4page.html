@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Table</title>
+    <style>
+        body {
+            background-color: #F5E6FF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Таблица товаров</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Название товара</th>
+                <th>Стоимость</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Телефон Poco </td>
+                <td rowspan="2">100 руб.</td>   
+                <td style='background-color: lightblue'> 5шт.</td>
+            </tr>
+            <tr>
+                <td>Телефон Nokia</td>
+                <td style='background-color: lightblue'> 3шт.</td>
+            </tr>
+            <tr>
+                <td>Телефон Samsung</td>
+                <td>50 руб.</td>
+                <td style='background-color: lightblue'> 10шт.</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

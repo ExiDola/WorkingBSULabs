@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HTML Форма с использованием массива</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 32px;
+        }
+
+
+        #formContainer {
+            width: 100vw; /* задаем ширину контейнера */
+            padding: 20px; /* добавляем внутренний отступ для контейнера */
+            background-color: #0db5e4; /* устанавливаем цвет фона */
+            border: 1px solid #ccc; /* добавляем границу */
+            border-radius: 10px; /* скругляем углы */
+        }
+
+        .my-text {
+              margin-top: 10px;
+             margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="formContainer"></div>
+    <script>
+        var FormA = [
+    { label: 'Производитель:', elemtype: 'text1line', name: 'developers', width: 200 ,placeholder: 'Введите текст...'},
+    { label: 'Ваши контактные данные:', elemtype: 'text1line', name: 'contactInfo', width: 200 ,placeholder: 'Введите номер...' },
+    { label: 'Модель телефона:', elemtype: 'text1line', name: 'MobPhone', width: 200 ,placeholder: 'Введите модель...' },
+    { label: 'Разрешить отзывы:', elemtype: 'check', name: 'enablecomments' },
+    { label: 'Есть гарантия:', elemtype: 'radio', name: 'radioParts' },
+    { label: 'Нет гарантии:', elemtype: 'radio', name: 'radioParts' },
+    { label: 'Услуги:', elemtype: 'radioList', name: 'services' },
+    { label: 'Отослать:', elemtype: 'button', value: 'Send' }
+];
+
+
+        var formName = "mainForm";
+
+
+        function validateField(inputElement, element) {
+    var errorContainer = inputElement.nextElementSibling;
+
+    if (!errorContainer || !errorContainer.classList.contains('error')) {
+        errorContainer = document.createElement('div');
+        errorContainer.classList.add('error');
+        inputElement.parentNode.insertBefore(errorContainer, inputElement.nextSibling);
+    }
+
+    if (element.elemtype === 'text1line') {
+    if (inputElement.value.trim() === '') {
+        errorContainer.textContent = 'Поле "' + element.label + '" не заполнено.';
+        return false;
+    } else if (!/^[а-яё]+$/i.test(inputElement.value.trim())) {
+        errorContainer.textContent = 'Поле "' + element.label + '" должно содержать только русские буквы.';
+        return false;
+    } else {
+        errorContainer.textContent = '';
+    }
+}
+
+
+    if (element.elemtype === 'radioList') {
+        var selectedOption = inputElement.value;
+        if (selectedOption === 'Не выбрано') {
+            errorContainer.textContent = 'Не выбран вариант в поле "' + element.label + '".';
+            return false;
+        } else {
+            errorContainer.textContent = '';
+        }
+    }
+
+    return true;
+}
+
+
+function validateForm(event) {
+    event.preventDefault(); 
+
+    var form = event.target;
+    var inputs = form.querySelectorAll('input, select'); 
+    var isValid = true;
+
+    inputs.forEach(function(inputElement) {
+        var element = FormA.find(function(el) {
+            return el.name === inputElement.name;
+        });
+        if (!validateField(inputElement, element)) {
+            isValid = false;
+        }
+    });
+
+    if (isValid) {
+        form.submit(); 
+    }
+}
+
+
+
+
+
+
+    function createForm(FormA, formName)
+    {
+    var form = document.createElement('form');
+    FormA.forEach(function (element) {
+        var inputElement;
+        var breakElement = document.createElement('br');
+
+        switch (element.elemtype) {
+            case 'text1line':
+                inputElement = document.createElement('input');
+                inputElement.type = 'text';
+                inputElement.name = element.name;
+                inputElement.style.marginLeft = '60px';
+                inputElement.style.width = element.width + 'px';
+                inputElement.style.transform = 'scale(1.5)';
+                if (element.placeholder) {
+                    inputElement.setAttribute('placeholder', element.placeholder);
+                }
+                inputElement.addEventListener('input', function() {
+                        validateField(inputElement, element);
+                });
+                form.appendChild(breakElement);
+                break;
+            case 'check':
+                inputElement = document.createElement('input');
+                inputElement.type = 'checkbox';
+                inputElement.name = element.name;
+                inputElement.style.transform = 'scale(2)';
+                form.appendChild(breakElement);
+                break;
+            case 'button':
+                inputElement = document.createElement('input');
+                inputElement.type = 'submit';
+                inputElement.value = element.value;
+                inputElement.style.marginLeft = '60px';
+                form.appendChild(breakElement);
+                inputElement.style.transform = 'scale(1.7)';
+                form.addEventListener('submit', validateForm);
+
+                break;
+            case 'radio':
+                inputElement = document.createElement('input');
+                inputElement.type = 'radio';
+                inputElement.name = element.name;
+                inputElement.style.transform = 'scale(2)';
+                inputElement.style.width = element.width + 'px';
+                if (element.placeholder) {
+                    inputElement.setAttribute('placeholder', element.placeholder);
+                }
+                form.appendChild(breakElement);
+                break;
+                case 'radioList':
+    var selectElement = document.createElement('select'); 
+    selectElement.name = element.name;
+    var options = ['Не выбрано','Включено', 'Выключено', 'Без гарантии'];
+    options.forEach(function (optionText) {
+        var optionElement = document.createElement('option');
+        optionElement.value = optionText;
+        optionElement.textContent = optionText;
+        selectElement.appendChild(optionElement);
+    });
+    selectElement.style.marginLeft = '60px';
+    selectElement.style.transform = 'scale(1.5)';
+    selectElement.addEventListener('change', function() {
+        validateField(selectElement, element);
+    });
+    inputElement = selectElement;
+    form.appendChild(breakElement);
+    break;
+default:
+    break;
+        }
+
+        var labelElement = document.createElement('label');
+        labelElement.innerHTML = element.label;
+        labelElement.appendChild(inputElement);
+
+        form.appendChild(labelElement);
+    });
+    var formContainer = document.getElementById('formContainer');
+    
+
+
+    formContainer.appendChild(form);
+    }
+
+        createForm(FormA, formName);
+    </script>
+</body>
+</html>

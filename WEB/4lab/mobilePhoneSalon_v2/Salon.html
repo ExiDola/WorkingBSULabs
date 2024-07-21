@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoneSalon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        input[type=button] {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type=button]:hover {
+            background-color: #e0e0e0;
+        }
+
+        #display {
+            width: 60%;
+            padding: 20px;
+            background-color: #ffffffc0;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+
+        .button-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="button-container">
+        <input onclick="AddValue();" value="Ввод информации о ..." type="button">
+        <input onclick="DeleteValue();" value="Удаление информации о ..." type="button">
+        <input onclick="GetValueInfo();" value="Получение информации о ..." type="button">
+        <input onclick="ListValues();" value="Перечень всех ..." type="button">
+    </div>
+
+
+    <div id="display">
+
+    </div>
+
+    <script src="Salon.js"></script>
+</body>
+</html>
