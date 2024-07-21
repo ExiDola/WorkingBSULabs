@@ -1,0 +1,21 @@
+﻿  2lab.cpp
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(26,31): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(26,31): warning C4244:         with
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(26,31): warning C4244:         [
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(26,31): warning C4244:             _Ty=double
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(26,31): warning C4244:         ]
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(34,31): warning C4244: =: преобразование "_Ty" в "int", возможна потеря данных
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(34,31): warning C4244:         with
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(34,31): warning C4244:         [
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(34,31): warning C4244:             _Ty=double
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(34,31): warning C4244:         ]
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(53,5): warning C4102: std: неиспользованная метка
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(58,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(64,28): warning C4244: +=: преобразование "const _Ty" в "long", возможна потеря данных
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(64,28): warning C4244:         with
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(64,28): warning C4244:         [
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(64,28): warning C4244:             _Ty=double
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(64,28): warning C4244:         ]
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(70,5): warning C4102: std: неиспользованная метка
+C:\Users\ExiDola\Desktop\OSI\2lab\2lab\2lab\2lab.cpp(107,5): warning C4102: std: неиспользованная метка
+  2lab.vcxproj -> C:\Users\ExiDola\Desktop\OSI\2lab\2lab\x64\Debug\2lab.exe

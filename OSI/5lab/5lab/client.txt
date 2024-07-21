@@ -1,0 +1,162 @@
+#include"../header.h"
+#include <iostream>
+#include <conio.h>
+
+wchar_t pipeName[] = L"\\\\.\\pipe\\demo_pipe";
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    char test;
+    HANDLE hNamedPipe =0;
+   
+
+    while (true)
+    {
+        setlocale(LC_ALL, "rus");
+        
+        string str;
+       
+        cout << "Введите 1, если хотите модифицировать запись " << endl;
+        cout << "Введите 2, если хотите прочитать запись " << endl;
+        cout << "Введите 3, если хотите выйти из процесса(цикла) " << endl;
+        cin >> str;
+        if (str == "1") {
+            
+            hNamedPipe = CreateFile(
+                pipeName,			        // имя канала
+                GENERIC_READ | GENERIC_WRITE,  // открываем для чтения и записи
+                0, // разрешаем чтение и запись другим процессам
+                NULL,	// защита по умолчанию
+                OPEN_EXISTING,			// открываем существующий канал
+                0,				// атрибуты по умолчанию
+                (HANDLE)NULL			// дополнительных атрибутов нет
+            );
+            if (hNamedPipe == INVALID_HANDLE_VALUE)
+            {
+                cerr << "Connection to the named pipe failed." << endl
+                    << "The last error code: " << GetLastError() << endl;
+            }
+
+            cout << "Я запустился" << endl;
+            int num = INT_MAX;
+            int i = 0;
+            int currentIndex = -1; // Индекс записи с заданным номером, -1 если запись не найдена
+            cout << "Введите номер ключ записи" << endl;
+            cin >> num;
+            DWORD dwBytesRead;
+            employee empRead;
+            employee CurrentRec;
+            ReadFile(
+                hNamedPipe,
+                &empRead,                // Указатель на структуру employee
+                sizeof(employee),       // Размер структуры
+                &dwBytesRead,           // Количество прочитанных байт
+                NULL
+            );
+            int a = empRead.countOfRecords;
+            employee* employees = new employee[a];
+            employees[0] = empRead;
+            do {
+                if (empRead.num == num) {
+                    currentIndex = i;
+                    CurrentRec = empRead;
+                }
+                employees[i] = empRead;
+                i++;
+            } while (ReadFile(
+                hNamedPipe,
+                &empRead,               // Указатель на структуру employee
+                sizeof(employee),       // Размер структуры
+                &dwBytesRead,           // Количество прочитанных байт
+                NULL
+            ));
+
+            if (currentIndex == -1) { // Если запись с заданным номером не найдена
+                cout << "Такой записи нет" << endl;
+            }
+            else {
+                couterStructEl(CurrentRec);
+                if (WaitForSingleObject(CurrentRec.hMutex, 0) == WAIT_OBJECT_0) {
+                    cout << "Введите новые данные" << endl;
+                    // Ввод новых данных только для num, остальные данные остаются неизменными
+                    cin >> CurrentRec.num;
+
+                    // Перемещаем указатель файла на нужное место
+                    SetFilePointer(
+                        hNamedPipe,
+                        currentIndex * sizeof(employee), // Позиция элемента в файле
+                        NULL,
+                        FILE_BEGIN
+                    );
+
+                    // Записываем только измененный элемент
+                    WriteFile(
+                        hNamedPipe,
+                        &CurrentRec,
+                        sizeof(employee),
+                        &dwBytesRead,
+                        NULL
+                    );
+
+                    cout << "Закончил изменение элемента" << endl;
+					delete[] employees;
+                    ReleaseMutex(CurrentRec.hMutex);
+                }
+                else {
+                    cout << "Данные заблокированы на данный момент" << endl;
+                }
+            }
+        }
+
+        else if (str == "2") {
+
+            hNamedPipe = CreateFile(
+                pipeName,			        // имя канала
+                GENERIC_READ | GENERIC_WRITE,  // открываем для чтения и записи
+                0, // разрешаем чтение и запись другим процессам
+                NULL,	// защита по умолчанию
+                OPEN_EXISTING,			// открываем существующий канал
+                0,				// атрибуты по умолчанию
+                (HANDLE)NULL			// дополнительных атрибутов нет
+            );
+            if (hNamedPipe == INVALID_HANDLE_VALUE)
+            {
+                cerr << "Creation of the named pipe failed." << endl
+                    << "The last error code: " << GetLastError() << endl;
+            }
+
+            cout << "Я запустился" << endl;
+            int num = 0;
+            cout << "Введите номер ключ записи" << endl;
+            cin >> num;
+            employee empRead;
+            DWORD dwBytesRead;
+            while (ReadFile(
+                hNamedPipe,
+                &empRead,                // Указатель на структуру employee
+                sizeof(employee),       // Размер структуры
+                &dwBytesRead,           // Количество прочитанных байт
+                NULL
+            )) {
+                if (empRead.num == num) {
+                    break;
+                }
+            }
+            couterStructEl(empRead);
+        }
+        else if (str == "3") {
+            break;
+        }
+        else
+        {
+			cout << "Неверный ввод" << endl;
+        }
+    }
+
+	CloseHandle(hNamedPipe);
+    cout << "Я закончился, нажмите любую клавишу" << endl;
+    cin >> test;
+    return 0;
+}
+

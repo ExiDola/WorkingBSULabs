@@ -1,0 +1,4 @@
+﻿  SecondProc.cpp
+C:\Users\ExiDola\Desktop\OSI\4lab\4lab\SecondProc\SecondProc.cpp(121,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\ExiDola\Desktop\OSI\4lab\4lab\SecondProc\SecondProc.cpp(143,14): warning C4101: point: неиспользованная локальная переменная
+  SecondProc.vcxproj -> C:\Users\ExiDola\Desktop\OSI\4lab\4lab\x64\Debug\SecondProc.exe

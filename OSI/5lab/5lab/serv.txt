@@ -1,0 +1,175 @@
+#include "../header.h"
+
+int a;
+employee* employees;
+
+bool IsInFile(int id, employee* employees, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (id == employees[i].num)
+            return false;
+    }
+        return true;
+}
+
+
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    srand(time(NULL));
+
+    char tester;
+    int n;
+    cout << "Введите количество процессов:" << endl;
+    cin >> n;
+
+   
+    cout << "Введите количество сотрудников: ";
+    cin >> a;
+
+    employees = new employee[a];
+
+    employees[0].countOfRecords = a;
+
+    HANDLE hNamedPipe = NULL;
+    HANDLE hThread = NULL;
+
+   
+
+    int Id = 0;
+    employee test;
+
+    for (int i = 0; i < a; i++)
+    {
+        cout << "Введите номер сотрудника, Введите имя сотрудника, введите часы сотрудника " << endl;
+        cin >> Id;
+        while (!IsInFile(Id, employees, a) || Id == 0)
+        {
+            cout << "Такой номер уже есть или он не может быть равен 0" << endl;
+            cin >> test.name >> test.hours;
+            cout << "Введите номер сотрудника, Введите имя сотрудника, введите часы сотрудника " << endl;
+            cin >> Id;
+        }
+        employees[i].num = Id;
+        cin >> employees[i].name >> employees[i].hours;
+        std::wstring mutexName = L"<MainMutex>" + std::to_wstring(i);
+        employees[i].hMutex = CreateMutex(NULL, FALSE, mutexName.c_str());
+    }
+
+    //вывод того, что ввели
+    for (int i = 0; i < a; i++)
+    {
+        couterStructEl(employees[i]);
+    }
+
+        STARTUPINFO si;
+        ZeroMemory(&si, sizeof(si));
+        si.cb = sizeof(si);
+
+        vector<HANDLE> hProc(n);
+
+        string cmdLine = "AnotherProc.exe "; // Путь к исполняемому файлу
+        PROCESS_INFORMATION pi;
+
+        ZeroMemory(&pi, sizeof(pi));
+
+        // Цикл для создания n процессов
+        for (int i = 0; i < n; ++i) {
+
+            Sleep(500);
+            hProc.push_back(pi.hProcess);
+
+            wstring cmdLineW = wstring(cmdLine.begin(), cmdLine.end()); // Преобразование строки команды в wstring
+
+            // Создание процесса
+            if (!CreateProcess(NULL,          // Используем имя программы из командной строки
+                &cmdLineW[0], // Командная строка
+                NULL,         // Атрибуты защиты процесса не наследуются
+                NULL,         // Атрибуты защиты потока не наследуются
+                FALSE,        // Дескрипторы не наследуются
+                CREATE_NEW_CONSOLE, // Создание новой консоли
+                NULL,         // Использование блока окружения родителя
+                NULL,         // Использование текущего каталога родителя
+                &si,          // Указатель на структуру STARTUPINFO
+                &pi))         // Указатель на структуру PROCESS_INFORMATION
+            {
+                cout << "Ошибка при создании процесса: " << GetLastError() << endl;
+            }
+            else {
+                cout << "Процесс " << i + 1 << " создан успешно." << endl;
+            }
+        }
+
+        WaitForMultipleObjects(n, hProc.data(), TRUE, INFINITE);
+
+        cout << "Дождался процессы" << endl;
+
+        DWORD dwBytesWritten;
+        //for (int i = 0; i < a; ++i)
+        //{
+        //    if (!WriteFile(
+        //        hNamedPipe,
+        //        &employees[i],          // Указатель на структуру employee
+        //        sizeof(employee),      // Размер структуры
+        //        &dwBytesWritten,       // Количество записанных байт
+        //        NULL
+        //    )) {
+        //        cerr << "Failed to write to named pipe. Error code: " << GetLastError() << endl;
+        //        // Дополнительная обработка ошибки, если необходимо
+        //    }
+        //    else {
+        //        cout << "Write to named pipe successful." << endl;
+        //    }
+        //}
+
+        //вечный цикл для постоянной поддержки сервером с помощью команды ConnectNamedPipe
+
+        std::vector<HANDLE> hThreads(n);
+        std::vector<HANDLE> hPipes(n);
+
+        for (int i = 0; i < n; ++i) {
+            hThreads[i] = CreateThread(NULL, 0, [](LPVOID lpParam) -> DWORD {
+                int index = (int)lpParam;
+                HANDLE hPipe;
+                while (true) {
+                    hPipe = CreateNamedPipe(
+                        L"\\\\.\\pipe\\demo_pipe",   // имя канала
+                        PIPE_ACCESS_DUPLEX,
+                        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+                        PIPE_UNLIMITED_INSTANCES,
+                        0, 0, NMPWAIT_USE_DEFAULT_WAIT, NULL
+                    );
+
+                    if (hPipe == INVALID_HANDLE_VALUE) {
+                        std::cerr << "Failed to create pipe. Error code: " << GetLastError() << std::endl;
+                        continue;
+                    }
+
+                    if (ConnectNamedPipe(hPipe, NULL) || GetLastError() == ERROR_PIPE_CONNECTED) {
+                        std::cout << "Client connected. Sending employee data..." << std::endl;
+                        DWORD bytesWritten;
+                        // Отправка данных клиенту один раз
+                        if (!WriteFile(hPipe, &employees[index], sizeof(employee), &bytesWritten, NULL)) {
+                            std::cerr << "Failed to send data to client. Error code: " << GetLastError() << std::endl;
+                        }
+                        std::cout << "Data sent successfully." << std::endl;
+                    }
+                    DisconnectNamedPipe(hPipe);
+                    CloseHandle(hPipe);
+                }
+                return 0;
+                }, (LPVOID)i, 0, NULL);
+        }
+
+        std::cout << "Server is running. Press any key to exit." << std::endl;
+        std::cin.get();
+
+        for (int i = 0; i < n; ++i) {
+            TerminateThread(hThreads[i], 0);
+            CloseHandle(hThreads[i]);
+        }
+
+        return 0;
+}

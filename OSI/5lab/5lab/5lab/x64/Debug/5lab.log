@@ -1,0 +1,4 @@
+﻿  5lab.cpp
+C:\Users\ExiDola\Desktop\OSI\5lab\5lab\5lab\5lab.cpp(93,51): warning C4244: аргумент: преобразование "float" в "DWORD", возможна потеря данных
+C:\Users\ExiDola\Desktop\OSI\5lab\5lab\5lab\5lab.cpp(114,18): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
+  5lab.vcxproj -> C:\Users\ExiDola\Desktop\OSI\5lab\5lab\x64\Debug\5lab.exe

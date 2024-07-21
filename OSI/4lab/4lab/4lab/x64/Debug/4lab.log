@@ -1,0 +1,5 @@
+﻿  4lab.cpp
+C:\Users\ExiDola\Desktop\OSI\4lab\4lab\4lab\4lab.cpp(123,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\ExiDola\Desktop\OSI\4lab\4lab\4lab\4lab.cpp(232,10): warning C4101: point: неиспользованная локальная переменная
+C:\Users\ExiDola\Desktop\OSI\4lab\4lab\4lab\4lab.cpp(173,14): warning C4101: point: неиспользованная локальная переменная
+  4lab.vcxproj -> C:\Users\ExiDola\Desktop\OSI\4lab\4lab\x64\Debug\4lab.exe
